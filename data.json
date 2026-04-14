@@ -1,0 +1,100 @@
+{
+  "lastUpdated": "2026-04-14",
+  "items": [
+    {
+      "id": "001",
+      "description": "[Delivery terms — update description from Plaud summary]",
+      "owner": "Alan",
+      "source": "2026-04-14",
+      "priority": "Medium",
+      "status": "Open",
+      "lastUpdated": "2026-04-14"
+    },
+    {
+      "id": "002",
+      "description": "[Freight revenue reporting — update description from Plaud summary]",
+      "owner": "Satbere",
+      "source": "2026-04-14",
+      "priority": "Medium",
+      "status": "Open",
+      "lastUpdated": "2026-04-14"
+    },
+    {
+      "id": "003",
+      "description": "[Markup security — update description from Plaud summary]",
+      "owner": "Satbere",
+      "source": "2026-04-14",
+      "priority": "Medium",
+      "status": "Open",
+      "lastUpdated": "2026-04-14"
+    },
+    {
+      "id": "004",
+      "description": "[Tracking numbers — update description from Plaud summary]",
+      "owner": "Alan",
+      "source": "2026-04-14",
+      "priority": "Medium",
+      "status": "Open",
+      "lastUpdated": "2026-04-14"
+    },
+    {
+      "id": "005",
+      "description": "[Ticketing — update description from Plaud summary]",
+      "owner": "Alan",
+      "source": "2026-04-14",
+      "priority": "Medium",
+      "status": "Open",
+      "lastUpdated": "2026-04-14"
+    },
+    {
+      "id": "006",
+      "description": "[Action item 6 — update description from Plaud summary]",
+      "owner": "Alan",
+      "source": "2026-04-14",
+      "priority": "Medium",
+      "status": "Open",
+      "lastUpdated": "2026-04-14"
+    },
+    {
+      "id": "007",
+      "description": "[Action item 7 — update description from Plaud summary]",
+      "owner": "Alan",
+      "source": "2026-04-14",
+      "priority": "Medium",
+      "status": "Open",
+      "lastUpdated": "2026-04-14"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D1",
+      "description": "[Unresolved decision 1 — update from Plaud summary]",
+      "raised": "2026-04-14",
+      "status": "Open"
+    },
+    {
+      "id": "D2",
+      "description": "[Unresolved decision 2 — update from Plaud summary]",
+      "raised": "2026-04-14",
+      "status": "Open"
+    },
+    {
+      "id": "D3",
+      "description": "[Unresolved decision 3 — update from Plaud summary]",
+      "raised": "2026-04-14",
+      "status": "Open"
+    },
+    {
+      "id": "D4",
+      "description": "[Unresolved decision 4 — update from Plaud summary]",
+      "raised": "2026-04-14",
+      "status": "Open"
+    },
+    {
+      "id": "D5",
+      "description": "[Unresolved decision 5 — update from Plaud summary]",
+      "raised": "2026-04-14",
+      "status": "Open"
+    }
+  ]
+}
