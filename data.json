@@ -3,8 +3,8 @@
   "items": [
     {
       "id": "001",
-      "title": "[Delivery Terms â update from Plaud summary]",
-      "description": "[Brief description of what needs to happen â update from Plaud summary]",
+      "title": "[Delivery Terms Ã¢ÂÂ update from Plaud summary]",
+      "description": "[Brief description of what needs to happen Ã¢ÂÂ update from Plaud summary]",
       "category": "Delivery Terms",
       "owner": "Alan",
       "source": "2026-04-14",
@@ -14,8 +14,8 @@
     },
     {
       "id": "002",
-      "title": "[Freight Revenue Reporting â update from Plaud summary]",
-      "description": "[Brief description of what needs to happen â update from Plaud summary]",
+      "title": "[Freight Revenue Reporting Ã¢ÂÂ update from Plaud summary]",
+      "description": "[Brief description of what needs to happen Ã¢ÂÂ update from Plaud summary]",
       "category": "Freight Revenue",
       "owner": "Satbere",
       "source": "2026-04-14",
@@ -25,8 +25,8 @@
     },
     {
       "id": "003",
-      "title": "[Markup Security â update from Plaud summary]",
-      "description": "[Brief description of what needs to happen â update from Plaud summary]",
+      "title": "[Markup Security Ã¢ÂÂ update from Plaud summary]",
+      "description": "[Brief description of what needs to happen Ã¢ÂÂ update from Plaud summary]",
       "category": "Security & Access",
       "owner": "Satbere",
       "source": "2026-04-14",
@@ -36,8 +36,8 @@
     },
     {
       "id": "004",
-      "title": "[Tracking Numbers â update from Plaud summary]",
-      "description": "[Brief description of what needs to happen â update from Plaud summary]",
+      "title": "[Tracking Numbers Ã¢ÂÂ update from Plaud summary]",
+      "description": "[Brief description of what needs to happen Ã¢ÂÂ update from Plaud summary]",
       "category": "Tracking & Logistics",
       "owner": "Alan",
       "source": "2026-04-14",
@@ -47,8 +47,8 @@
     },
     {
       "id": "005",
-      "title": "[Ticketing â update from Plaud summary]",
-      "description": "[Brief description of what needs to happen â update from Plaud summary]",
+      "title": "[Ticketing Ã¢ÂÂ update from Plaud summary]",
+      "description": "[Brief description of what needs to happen Ã¢ÂÂ update from Plaud summary]",
       "category": "Ticketing & Support",
       "owner": "Alan",
       "source": "2026-04-14",
@@ -58,8 +58,8 @@
     },
     {
       "id": "006",
-      "title": "[Action item 6 â update from Plaud summary]",
-      "description": "[Brief description of what needs to happen â update from Plaud summary]",
+      "title": "[Action item 6 Ã¢ÂÂ update from Plaud summary]",
+      "description": "[Brief description of what needs to happen Ã¢ÂÂ update from Plaud summary]",
       "category": "General",
       "owner": "Alan",
       "source": "2026-04-14",
@@ -69,44 +69,44 @@
     },
     {
       "id": "007",
-      "title": "[Action item 7 â update from Plaud summary]",
-      "description": "[Brief description of what needs to happen â update from Plaud summary]",
+      "title": "[Action item 7 Ã¢ÂÂ update from Plaud summary]",
+      "description": "[Brief description of what needs to happen Ã¢ÂÂ update from Plaud summary]",
       "category": "General",
       "owner": "Alan",
       "source": "2026-04-14",
       "priority": "Medium",
-      "status": "Done",
+      "status": "Open",
       "lastUpdated": "2026-04-19"
     }
   ],
   "decisions": [
     {
       "id": "D1",
-      "description": "[Unresolved decision 1 â update from Plaud summary]",
+      "description": "[Unresolved decision 1 Ã¢ÂÂ update from Plaud summary]",
       "raised": "2026-04-14",
       "status": "Open"
     },
     {
       "id": "D2",
-      "description": "[Unresolved decision 2 â update from Plaud summary]",
+      "description": "[Unresolved decision 2 Ã¢ÂÂ update from Plaud summary]",
       "raised": "2026-04-14",
       "status": "Open"
     },
     {
       "id": "D3",
-      "description": "[Unresolved decision 3 â update from Plaud summary]",
+      "description": "[Unresolved decision 3 Ã¢ÂÂ update from Plaud summary]",
       "raised": "2026-04-14",
       "status": "Open"
     },
     {
       "id": "D4",
-      "description": "[Unresolved decision 4 â update from Plaud summary]",
+      "description": "[Unresolved decision 4 Ã¢ÂÂ update from Plaud summary]",
       "raised": "2026-04-14",
       "status": "Open"
     },
     {
       "id": "D5",
-      "description": "[Unresolved decision 5 â update from Plaud summary]",
+      "description": "[Unresolved decision 5 Ã¢ÂÂ update from Plaud summary]",
       "raised": "2026-04-14",
       "status": "Open"
     }
