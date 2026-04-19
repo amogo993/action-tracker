@@ -9,7 +9,7 @@
       "owner": "Satbere",
       "source": "2026-04-14",
       "priority": "Medium",
-      "status": "Done",
+      "status": "Complete",
       "lastUpdated": "2026-04-14"
     },
     {
@@ -20,7 +20,7 @@
       "owner": "Satbere",
       "source": "2026-04-14",
       "priority": "High",
-      "status": "Done",
+      "status": "Complete",
       "lastUpdated": "2026-04-14"
     },
     {
@@ -31,7 +31,7 @@
       "owner": "Satbere",
       "source": "2026-04-14",
       "priority": "High",
-      "status": "Done",
+      "status": "Complete",
       "lastUpdated": "2026-04-14"
     },
     {
@@ -75,7 +75,7 @@
       "owner": "Alan",
       "source": "2026-04-14",
       "priority": "Low",
-      "status": "Done",
+      "status": "Complete",
       "lastUpdated": "2026-04-14"
     }
   ],
