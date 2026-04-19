@@ -25,21 +25,26 @@
       gap: 12px;
     }
 
-    header h1 {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: -0.3px;
-    }
+    header h1 { font-size: 1.4rem; font-weight: 700; color: #fff; letter-spacing: -0.3px; }
     header h1 span { color: #6366f1; }
 
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    .header-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 
     #last-updated { font-size: 0.78rem; color: #64748b; }
+
+    #archive-btn {
+      background: #1a2a1a;
+      border: 1px solid #2d4a2d;
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 0.75rem;
+      color: #4ade80;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    #archive-btn:hover  { border-color: #22c55e; background: #0f2a1a; }
+    #archive-btn.active { background: #22c55e; border-color: #22c55e; color: #000; font-weight: 600; }
 
     #connect-btn {
       background: #1e2040;
@@ -55,170 +60,106 @@
     #connect-btn:hover { border-color: #6366f1; color: #a5b4fc; }
     #connect-btn.connected { background: #0f2a1a; border-color: #22c55e; color: #4ade80; }
 
+    /* ── Archive banner ── */
+    #archive-banner {
+      display: none;
+      background: #0f2a1a;
+      border-bottom: 1px solid #1a4a2a;
+      padding: 10px 32px;
+      font-size: 0.82rem;
+      color: #4ade80;
+      align-items: center;
+      gap: 12px;
+    }
+    #archive-banner.show { display: flex; }
+    #archive-banner button {
+      background: none; border: 1px solid #4ade80; border-radius: 12px;
+      padding: 3px 12px; font-size: 0.75rem; color: #4ade80; cursor: pointer;
+    }
+    #archive-banner button:hover { background: #4ade80; color: #000; }
+
     /* ── PAT Modal ── */
     .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.7);
-      z-index: 100;
-      align-items: center;
-      justify-content: center;
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+      z-index: 100; align-items: center; justify-content: center;
     }
     .modal-overlay.open { display: flex; }
-
-    .modal {
-      background: #1a1d27;
-      border: 1px solid #2d3148;
-      border-radius: 14px;
-      padding: 28px;
-      width: 420px;
-      max-width: 90vw;
-    }
+    .modal { background: #1a1d27; border: 1px solid #2d3148; border-radius: 14px; padding: 28px; width: 420px; max-width: 90vw; }
     .modal h2 { font-size: 1rem; margin-bottom: 8px; color: #f1f5f9; }
     .modal p  { font-size: 0.8rem; color: #64748b; margin-bottom: 16px; line-height: 1.5; }
-    .modal input {
-      width: 100%;
-      background: #0f1117;
-      border: 1px solid #2d3148;
-      border-radius: 8px;
-      padding: 10px 14px;
-      font-size: 0.85rem;
-      color: #e2e8f0;
-      font-family: monospace;
-      margin-bottom: 16px;
-    }
+    .modal input { width: 100%; background: #0f1117; border: 1px solid #2d3148; border-radius: 8px; padding: 10px 14px; font-size: 0.85rem; color: #e2e8f0; font-family: monospace; margin-bottom: 16px; }
     .modal input:focus { outline: none; border-color: #6366f1; }
     .modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
-    .modal-actions button {
-      padding: 8px 18px;
-      border-radius: 8px;
-      font-size: 0.82rem;
-      cursor: pointer;
-      border: none;
-    }
+    .modal-actions button { padding: 8px 18px; border-radius: 8px; font-size: 0.82rem; cursor: pointer; border: none; }
     .btn-cancel { background: #2d3148; color: #94a3b8; }
     .btn-save   { background: #6366f1; color: #fff; font-weight: 600; }
 
     /* ── Stats ── */
     .stats-bar { display: flex; gap: 12px; padding: 20px 32px; flex-wrap: wrap; }
-
-    .stat {
-      background: #1a1d27;
-      border: 1px solid #2d3148;
-      border-radius: 10px;
-      padding: 14px 20px;
-      min-width: 110px;
-      text-align: center;
-    }
+    .stat { background: #1a1d27; border: 1px solid #2d3148; border-radius: 10px; padding: 14px 20px; min-width: 110px; text-align: center; }
     .stat .number { font-size: 1.8rem; font-weight: 700; line-height: 1; }
     .stat .label  { font-size: 0.72rem; color: #64748b; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
-
-    .stat.stale .number     { color: #ef4444; }
-    .stat.watch .number     { color: #f59e0b; }
-    .stat.open .number      { color: #6366f1; }
-    .stat.inprogress .number{ color: #3b82f6; }
-    .stat.blocked .number   { color: #f97316; }
-    .stat.done .number      { color: #22c55e; }
-    .stat.total .number     { color: #e2e8f0; }
+    .stat.stale .number      { color: #ef4444; }
+    .stat.watch .number      { color: #f59e0b; }
+    .stat.open .number       { color: #6366f1; }
+    .stat.inprogress .number { color: #3b82f6; }
+    .stat.blocked .number    { color: #f97316; }
+    .stat.complete .number   { color: #22c55e; }
+    .stat.total .number      { color: #e2e8f0; }
 
     /* ── Filters ── */
     .filter-group { padding: 0 32px 8px; }
-    .filter-group-label {
-      font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.8px;
-      color: #475569; margin-bottom: 6px; font-weight: 600;
-    }
+    .filter-group-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.8px; color: #475569; margin-bottom: 6px; font-weight: 600; }
     .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
-
-    .filter-btn {
-      background: #1a1d27; border: 1px solid #2d3148; border-radius: 20px;
-      padding: 6px 16px; font-size: 0.8rem; color: #94a3b8;
-      cursor: pointer; transition: all 0.15s;
-    }
+    .filter-btn { background: #1a1d27; border: 1px solid #2d3148; border-radius: 20px; padding: 6px 16px; font-size: 0.8rem; color: #94a3b8; cursor: pointer; transition: all 0.15s; }
     .filter-btn:hover, .filter-btn.active { background: #6366f1; border-color: #6366f1; color: #fff; }
     .filter-btn.cat-active { background: #1e3a5f; border-color: #3b82f6; color: #93c5fd; }
 
     /* ── Cards ── */
     .section { padding: 0 32px 32px; }
-    .section-title {
-      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;
-      color: #64748b; margin-bottom: 12px; font-weight: 600;
-    }
+    .section-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #64748b; margin-bottom: 12px; font-weight: 600; }
     .items-grid { display: flex; flex-direction: column; gap: 8px; }
 
     .item-card {
-      background: #1a1d27;
-      border: 1px solid #2d3148;
-      border-radius: 10px;
-      padding: 16px 20px;
-      display: grid;
+      background: #1a1d27; border: 1px solid #2d3148; border-radius: 10px;
+      padding: 16px 20px; display: grid;
       grid-template-columns: 36px 48px 1fr auto;
-      gap: 12px;
-      align-items: start;
-      transition: border-color 0.15s;
+      gap: 12px; align-items: start; transition: border-color 0.15s;
     }
-    .item-card:hover { border-color: #4d5280; }
-    .item-card.stale   { border-left: 3px solid #ef4444; }
-    .item-card.watch   { border-left: 3px solid #f59e0b; }
-    .item-card.blocked { border-left: 3px solid #f97316; }
-    .item-card.done    { opacity: 0.5; }
+    .item-card:hover    { border-color: #4d5280; }
+    .item-card.stale    { border-left: 3px solid #ef4444; }
+    .item-card.watch    { border-left: 3px solid #f59e0b; }
+    .item-card.blocked  { border-left: 3px solid #f97316; }
+    .item-card.complete { border-left: 3px solid #22c55e; opacity: 0.7; }
 
-    /* Checkbox circle */
+    /* Checkbox */
     .item-check {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      border: 2px solid #374151;
-      background: transparent;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.15s;
-      flex-shrink: 0;
-      margin-top: 1px;
-      padding: 0;
+      width: 28px; height: 28px; border-radius: 50%; border: 2px solid #374151;
+      background: transparent; cursor: pointer; display: flex; align-items: center;
+      justify-content: center; transition: all 0.15s; flex-shrink: 0; margin-top: 1px; padding: 0;
     }
     .item-check:hover { border-color: #22c55e; background: #0f2a1a; }
-    .item-check.checked {
-      border-color: #22c55e;
-      background: #22c55e;
-    }
+    .item-check.checked { border-color: #22c55e; background: #22c55e; }
     .item-check.checked::after {
-      content: '';
-      display: block;
-      width: 10px;
-      height: 6px;
-      border-left: 2px solid #fff;
-      border-bottom: 2px solid #fff;
+      content: ''; display: block; width: 10px; height: 6px;
+      border-left: 2px solid #fff; border-bottom: 2px solid #fff;
       transform: rotate(-45deg) translateY(-1px);
     }
-    .item-check.loading {
-      border-color: #6366f1;
-      animation: spin 0.8s linear infinite;
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
+    .item-check.loading { border-color: #6366f1; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
-    .item-id {
-      font-size: 0.72rem; font-weight: 700; color: #6366f1;
-      background: #1e2040; border-radius: 6px; padding: 4px 8px;
-      text-align: center; font-family: monospace; margin-top: 2px;
-    }
-
+    .item-id { font-size: 0.72rem; font-weight: 700; color: #6366f1; background: #1e2040; border-radius: 6px; padding: 4px 8px; text-align: center; font-family: monospace; margin-top: 2px; }
     .item-title { font-size: 0.95rem; font-weight: 600; color: #f1f5f9; margin-bottom: 4px; line-height: 1.35; }
     .item-desc  { font-size: 0.82rem; color: #94a3b8; margin-bottom: 8px; line-height: 1.45; }
-
     .item-meta  { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
 
     .meta-tag { font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; font-weight: 500; }
-    .tag-owner          { background: #1e3a5f; color: #60a5fa; }
-    .tag-source         { background: #1e2a1e; color: #4ade80; }
-    .tag-category       { background: #2a1e40; color: #c084fc; }
-    .tag-priority-high  { background: #3b1212; color: #f87171; }
-    .tag-priority-medium{ background: #2a2612; color: #fbbf24; }
-    .tag-priority-low   { background: #1a2635; color: #7dd3fc; }
+    .tag-owner           { background: #1e3a5f; color: #60a5fa; }
+    .tag-source          { background: #1e2a1e; color: #4ade80; }
+    .tag-category        { background: #2a1e40; color: #c084fc; }
+    .tag-priority-high   { background: #3b1212; color: #f87171; }
+    .tag-priority-medium { background: #2a2612; color: #fbbf24; }
+    .tag-priority-low    { background: #1a2635; color: #7dd3fc; }
 
     .item-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; padding-top: 2px; }
 
@@ -226,46 +167,24 @@
     .status-open       { background: #1e2040; color: #818cf8; }
     .status-inprogress { background: #1e3055; color: #60a5fa; }
     .status-blocked    { background: #2d1f0e; color: #fb923c; }
-    .status-done       { background: #0f2a1a; color: #4ade80; }
+    .status-complete   { background: #0f2a1a; color: #4ade80; }
 
     .staleness-label { font-size: 0.68rem; white-space: nowrap; }
     .staleness-stale { color: #ef4444; font-weight: 600; }
     .staleness-watch { color: #f59e0b; }
     .staleness-fresh { color: #64748b; }
 
-    /* Toast notification */
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: #1a1d27;
-      border: 1px solid #2d3148;
-      border-radius: 10px;
-      padding: 12px 20px;
-      font-size: 0.82rem;
-      color: #e2e8f0;
-      z-index: 200;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: all 0.2s;
-      pointer-events: none;
-    }
-    .toast.show { opacity: 1; transform: translateY(0); }
+    /* Toast */
+    .toast { position: fixed; bottom: 24px; right: 24px; background: #1a1d27; border: 1px solid #2d3148; border-radius: 10px; padding: 12px 20px; font-size: 0.82rem; color: #e2e8f0; z-index: 200; opacity: 0; transform: translateY(8px); transition: all 0.2s; pointer-events: none; }
+    .toast.show    { opacity: 1; transform: translateY(0); }
     .toast.success { border-color: #22c55e; color: #4ade80; }
     .toast.error   { border-color: #ef4444; color: #f87171; }
 
-    .no-items {
-      background: #1a1d27; border: 1px dashed #2d3148; border-radius: 10px;
-      padding: 28px; text-align: center; color: #64748b; font-size: 0.85rem;
-    }
+    .no-items { background: #1a1d27; border: 1px dashed #2d3148; border-radius: 10px; padding: 28px; text-align: center; color: #64748b; font-size: 0.85rem; }
 
-    /* ── Decisions ── */
+    /* Decisions */
     .decisions-grid { display: flex; flex-direction: column; gap: 8px; }
-    .decision-card {
-      background: #1a1d27; border: 1px solid #2d3148; border-left: 3px solid #a855f7;
-      border-radius: 10px; padding: 14px 20px;
-      display: flex; justify-content: space-between; align-items: center; gap: 12px;
-    }
+    .decision-card { background: #1a1d27; border: 1px solid #2d3148; border-left: 3px solid #a855f7; border-radius: 10px; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
     .decision-id   { font-size: 0.72rem; font-weight: 700; color: #a855f7; font-family: monospace; white-space: nowrap; }
     .decision-desc { font-size: 0.88rem; color: #cbd5e1; flex: 1; }
     .decision-date { font-size: 0.7rem; color: #64748b; white-space: nowrap; }
@@ -274,6 +193,7 @@
 
     @media (max-width: 600px) {
       header, .stats-bar, .filter-group, .section { padding-left: 16px; padding-right: 16px; }
+      #archive-banner { padding-left: 16px; padding-right: 16px; }
       .item-card { grid-template-columns: 28px 40px 1fr; }
       .item-right { display: none; }
     }
@@ -285,9 +205,16 @@
   <h1>Action<span>Tracker</span></h1>
   <div class="header-right">
     <span id="last-updated">Loading...</span>
+    <button id="archive-btn" onclick="toggleArchive()">📦 Archive</button>
     <button id="connect-btn" onclick="openPATModal()">🔑 Connect to save changes</button>
   </div>
 </header>
+
+<!-- Archive banner -->
+<div id="archive-banner">
+  <span>📦 Viewing archived (completed) items</span>
+  <button onclick="toggleArchive()">← Back to active</button>
+</div>
 
 <!-- PAT Modal -->
 <div class="modal-overlay" id="pat-modal">
@@ -302,20 +229,17 @@
   </div>
 </div>
 
-<!-- Toast -->
 <div class="toast" id="toast"></div>
-
 <div class="stats-bar" id="stats-bar"></div>
 
-<div class="filter-group">
+<div class="filter-group" id="filter-group">
   <div class="filter-group-label">Status</div>
   <div class="filters" id="status-filters">
-    <button class="filter-btn active" onclick="setStatusFilter('all', this)">All</button>
+    <button class="filter-btn active" onclick="setStatusFilter('active', this)">All Active</button>
     <button class="filter-btn" onclick="setStatusFilter('stale', this)">🔴 Stale</button>
     <button class="filter-btn" onclick="setStatusFilter('Open', this)">Open</button>
     <button class="filter-btn" onclick="setStatusFilter('In Progress', this)">In Progress</button>
     <button class="filter-btn" onclick="setStatusFilter('Blocked', this)">Blocked</button>
-    <button class="filter-btn" onclick="setStatusFilter('Done', this)">Done</button>
   </div>
   <div class="filter-group-label">Category</div>
   <div class="filters" id="category-filters">
@@ -324,13 +248,13 @@
 </div>
 
 <div class="section">
-  <div class="section-title">Action Items</div>
+  <div class="section-title" id="items-section-title">Active Action Items</div>
   <div class="items-grid" id="items-container">
     <div class="no-items">Loading action items...</div>
   </div>
 </div>
 
-<div class="section">
+<div class="section" id="decisions-section">
   <div class="section-title">Unresolved Decisions</div>
   <div class="decisions-grid" id="decisions-container">
     <div class="no-items">Loading decisions...</div>
@@ -340,24 +264,47 @@
 <footer>ActionTracker &mdash; powered by Cowork &amp; Claude</footer>
 
 <script>
-  // ── Config ──────────────────────────────────────────────
   const REPO_OWNER = 'amogo993';
   const REPO_NAME  = 'action-tracker';
 
-  // ── State ────────────────────────────────────────────────
-  let allItems     = [];
-  let statusFilter  = 'all';
+  let allItems      = [];
+  let statusFilter  = 'active';
   let categoryFilter = 'all';
-  let githubPAT    = null;   // in-memory only, cleared on tab close
+  let githubPAT     = null;
+  let archiveMode   = false;
 
-  // ── PAT Modal ────────────────────────────────────────────
+  // ── Archive toggle ────────────────────────────────────────
+  function toggleArchive() {
+    archiveMode = !archiveMode;
+    const btn    = document.getElementById('archive-btn');
+    const banner = document.getElementById('archive-banner');
+    const filterGroup = document.getElementById('filter-group');
+    const decisionsSection = document.getElementById('decisions-section');
+
+    if (archiveMode) {
+      btn.classList.add('active');
+      btn.textContent = '✓ Archive';
+      banner.classList.add('show');
+      filterGroup.style.display = 'none';
+      decisionsSection.style.display = 'none';
+      document.getElementById('items-section-title').textContent = 'Archived — Completed Items';
+    } else {
+      btn.classList.remove('active');
+      btn.textContent = '📦 Archive';
+      banner.classList.remove('show');
+      filterGroup.style.display = '';
+      decisionsSection.style.display = '';
+      document.getElementById('items-section-title').textContent = 'Active Action Items';
+    }
+    renderItems();
+  }
+
+  // ── PAT Modal ─────────────────────────────────────────────
   function openPATModal() {
     document.getElementById('pat-modal').classList.add('open');
     document.getElementById('pat-input').focus();
   }
-  function closePATModal() {
-    document.getElementById('pat-modal').classList.remove('open');
-  }
+  function closePATModal() { document.getElementById('pat-modal').classList.remove('open'); }
   function savePAT() {
     const val = document.getElementById('pat-input').value.trim();
     if (!val) return;
@@ -369,29 +316,21 @@
     btn.classList.add('connected');
     showToast('Connected — checkboxes are now live', 'success');
   }
-  // Close modal on overlay click
-  document.getElementById('pat-modal').addEventListener('click', e => {
-    if (e.target === e.currentTarget) closePATModal();
-  });
-  // Connect on Enter key in PAT input
-  document.getElementById('pat-input').addEventListener('keydown', e => {
-    if (e.key === 'Enter') savePAT();
-  });
+  document.getElementById('pat-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closePATModal(); });
+  document.getElementById('pat-input').addEventListener('keydown', e => { if (e.key === 'Enter') savePAT(); });
 
   // ── Toast ─────────────────────────────────────────────────
   let toastTimer;
   function showToast(msg, type = '') {
     const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.className = 'toast show ' + type;
+    t.textContent = msg; t.className = 'toast show ' + type;
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => t.className = 'toast', 3000);
   }
 
-  // ── Staleness helpers ─────────────────────────────────────
+  // ── Staleness ─────────────────────────────────────────────
   function businessDaysSince(dateStr) {
-    const start = new Date(dateStr);
-    const today = new Date();
+    const start = new Date(dateStr), today = new Date();
     let count = 0, d = new Date(start);
     while (d < today) {
       d.setDate(d.getDate() + 1);
@@ -402,14 +341,14 @@
   }
 
   function getStaleness(item) {
-    if (item.status === 'Done') return { level: 'done', days: 0 };
+    if (item.status === 'Complete') return { level: 'complete', days: 0 };
     const days = businessDaysSince(item.lastUpdated);
     if (days >= 6) return { level: 'stale', days };
     if (days >= 3) return { level: 'watch', days };
     return { level: 'fresh', days };
   }
 
-  // ── Filters ──────────────────────────────────────────────
+  // ── Filters ───────────────────────────────────────────────
   function setStatusFilter(f, btn) {
     statusFilter = f;
     document.querySelectorAll('#status-filters .filter-btn').forEach(b => b.classList.remove('active'));
@@ -425,7 +364,8 @@
   }
 
   function buildCategoryFilters(items) {
-    const cats = ['all', ...new Set(items.map(i => i.category).filter(Boolean).sort())];
+    const activeItems = items.filter(i => i.status !== 'Complete');
+    const cats = ['all', ...new Set(activeItems.map(i => i.category).filter(Boolean).sort())];
     document.getElementById('category-filters').innerHTML = cats.map(c => {
       const label  = c === 'all' ? 'All Categories' : c;
       const active = c === 'all' ? 'cat-active' : '';
@@ -433,14 +373,14 @@
     }).join('');
   }
 
-  // ── Render stats ──────────────────────────────────────────
+  // ── Stats ─────────────────────────────────────────────────
   function renderStats(items) {
-    const staleCount = items.filter(i => i.status !== 'Done' && businessDaysSince(i.lastUpdated) >= 6).length;
-    const watchCount = items.filter(i => i.status !== 'Done' && businessDaysSince(i.lastUpdated) >= 3 && businessDaysSince(i.lastUpdated) < 6).length;
-    const open    = items.filter(i => i.status === 'Open').length;
-    const inprog  = items.filter(i => i.status === 'In Progress').length;
-    const blocked = items.filter(i => i.status === 'Blocked').length;
-    const done    = items.filter(i => i.status === 'Done').length;
+    const staleCount = items.filter(i => i.status !== 'Complete' && businessDaysSince(i.lastUpdated) >= 6).length;
+    const watchCount = items.filter(i => i.status !== 'Complete' && businessDaysSince(i.lastUpdated) >= 3 && businessDaysSince(i.lastUpdated) < 6).length;
+    const open       = items.filter(i => i.status === 'Open').length;
+    const inprog     = items.filter(i => i.status === 'In Progress').length;
+    const blocked    = items.filter(i => i.status === 'Blocked').length;
+    const complete   = items.filter(i => i.status === 'Complete').length;
 
     document.getElementById('stats-bar').innerHTML = `
       <div class="stat total">     <div class="number">${items.length}</div><div class="label">Total</div></div>
@@ -449,40 +389,51 @@
       <div class="stat open">      <div class="number">${open}</div><div class="label">Open</div></div>
       <div class="stat inprogress"><div class="number">${inprog}</div><div class="label">In Progress</div></div>
       <div class="stat blocked">   <div class="number">${blocked}</div><div class="label">Blocked</div></div>
-      <div class="stat done">      <div class="number">${done}</div><div class="label">Done</div></div>
+      <div class="stat complete">  <div class="number">${complete}</div><div class="label">Complete</div></div>
     `;
   }
 
   // ── Render items ──────────────────────────────────────────
   function renderItems() {
     const container = document.getElementById('items-container');
-    let filtered = allItems;
+    let filtered;
 
-    if (statusFilter === 'stale') {
-      filtered = filtered.filter(i => i.status !== 'Done' && businessDaysSince(i.lastUpdated) >= 6);
-    } else if (statusFilter !== 'all') {
-      filtered = filtered.filter(i => i.status === statusFilter);
-    }
+    if (archiveMode) {
+      // Archive view: only completed items
+      filtered = allItems.filter(i => i.status === 'Complete');
+    } else {
+      // Active view: never show completed items
+      filtered = allItems.filter(i => i.status !== 'Complete');
 
-    if (categoryFilter !== 'all') {
-      filtered = filtered.filter(i => i.category === categoryFilter);
+      if (statusFilter === 'stale') {
+        filtered = filtered.filter(i => businessDaysSince(i.lastUpdated) >= 6);
+      } else if (statusFilter !== 'active') {
+        filtered = filtered.filter(i => i.status === statusFilter);
+      }
+
+      if (categoryFilter !== 'all') {
+        filtered = filtered.filter(i => i.category === categoryFilter);
+      }
     }
 
     if (filtered.length === 0) {
-      container.innerHTML = `<div class="no-items">No items match this filter.</div>`;
+      const msg = archiveMode
+        ? 'No completed items yet. Check items off using the circle button on each card.'
+        : 'No items match this filter.';
+      container.innerHTML = `<div class="no-items">${msg}</div>`;
       return;
     }
 
     container.innerHTML = filtered.map(item => {
       const staleness    = getStaleness(item);
-      const cardClass    = staleness.level === 'done' ? 'done' : staleness.level;
-      const isDone       = item.status === 'Done';
+      const cardClass    = staleness.level;
+      const isComplete   = item.status === 'Complete';
       const statusClass  = item.status.toLowerCase().replace(' ', '');
       const priorityClass = `tag-priority-${item.priority.toLowerCase()}`;
       const categoryTag  = item.category ? `<span class="meta-tag tag-category">${item.category}</span>` : '';
 
-      const stalenessHTML = isDone
-        ? `<span class="staleness-label staleness-fresh">Closed</span>`
+      const stalenessHTML = isComplete
+        ? `<span class="staleness-label staleness-fresh">Archived</span>`
         : staleness.level === 'stale'
           ? `<span class="staleness-label staleness-stale">⚨ ${staleness.days}d stale</span>`
           : staleness.level === 'watch'
@@ -491,12 +442,12 @@
 
       return `
         <div class="item-card ${cardClass}" id="card-${item.id}">
-          <button class="item-check ${isDone ? 'checked' : ''}"
-                  onclick="toggleDone('${item.id}')"
-                  title="${isDone ? 'Reopen item' : 'Mark as Done'}"></button>
+          <button class="item-check ${isComplete ? 'checked' : ''}"
+                  onclick="toggleComplete('${item.id}')"
+                  title="${isComplete ? 'Reopen item' : 'Mark as Complete'}"></button>
           <div class="item-id">${item.id}</div>
           <div class="item-body">
-            ${item.title    ? `<div class="item-title">${item.title}</div>` : ''}
+            ${item.title       ? `<div class="item-title">${item.title}</div>` : ''}
             ${item.description ? `<div class="item-desc">${item.description}</div>` : ''}
             <div class="item-meta">
               ${categoryTag}
@@ -514,8 +465,8 @@
     }).join('');
   }
 
-  // ── Toggle Done via GitHub API ────────────────────────────
-  async function toggleDone(itemId) {
+  // ── Toggle Complete via GitHub API ────────────────────────
+  async function toggleComplete(itemId) {
     if (!githubPAT) {
       openPATModal();
       showToast('Connect first to enable live updates', '');
@@ -526,58 +477,43 @@
     if (btn) { btn.classList.add('loading'); btn.classList.remove('checked'); }
 
     try {
-      // 1. Fetch current data.json + SHA from GitHub API
       const getRes = await fetch(
         `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/data.json`,
         { headers: { Authorization: `token ${githubPAT}`, Accept: 'application/vnd.github.v3+json' } }
       );
       if (!getRes.ok) throw new Error('Could not fetch data.json from GitHub');
       const fileData = await getRes.json();
-      const sha      = fileData.sha;
       const current  = JSON.parse(atob(fileData.content.replace(/\n/g, '')));
 
-      // 2. Toggle the item status
       const item = current.items.find(i => i.id === itemId);
       if (!item) throw new Error(`Item ${itemId} not found`);
       const today = new Date().toISOString().split('T')[0];
-      item.status      = item.status === 'Done' ? 'Open' : 'Done';
+      item.status      = item.status === 'Complete' ? 'Open' : 'Complete';
       item.lastUpdated = today;
       current.lastUpdated = today;
 
-      // 3. Push updated data.json back
       const newContent = btoa(unescape(encodeURIComponent(JSON.stringify(current, null, 2))));
       const putRes = await fetch(
         `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/data.json`,
         {
           method: 'PUT',
-          headers: {
-            Authorization: `token ${githubPAT}`,
-            Accept: 'application/vnd.github.v3+json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            message: `Mark item ${itemId} as ${item.status}`,
-            content: newContent,
-            sha
-          })
+          headers: { Authorization: `token ${githubPAT}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: `Mark item ${itemId} as ${item.status}`, content: newContent, sha: fileData.sha })
         }
       );
-      if (!putRes.ok) {
-        const err = await putRes.json();
-        throw new Error(err.message || 'GitHub API error');
-      }
+      if (!putRes.ok) { const err = await putRes.json(); throw new Error(err.message || 'GitHub API error'); }
 
-      // 4. Update local state and re-render
       const local = allItems.find(i => i.id === itemId);
       if (local) { local.status = item.status; local.lastUpdated = today; }
       renderStats(allItems);
+      buildCategoryFilters(allItems);
       renderItems();
-      showToast(`Item ${itemId} marked as ${item.status}`, 'success');
+      const verb = item.status === 'Complete' ? 'marked complete ✓' : 'reopened';
+      showToast(`Item ${itemId} ${verb}`, 'success');
 
     } catch (err) {
-      if (btn) { btn.classList.remove('loading'); }
+      if (btn) btn.classList.remove('loading');
       showToast('Error: ' + err.message, 'error');
-      console.error(err);
     }
   }
 
@@ -607,14 +543,20 @@
       const decisions = data.decisions || [];
 
       document.getElementById('last-updated').textContent = `Last updated: ${data.lastUpdated || 'unknown'}`;
+
+      // Update archive button count
+      const completeCount = allItems.filter(i => i.status === 'Complete').length;
+      if (!archiveMode) {
+        document.getElementById('archive-btn').textContent = `📦 Archive (${completeCount})`;
+      }
+
       renderStats(allItems);
       buildCategoryFilters(allItems);
       renderItems();
       renderDecisions(decisions);
     } catch (e) {
-      document.getElementById('items-container').innerHTML = `
-        <div class="no-items">Could not load data.json.<br/>
-        <small style="color:#374151;margin-top:4px;display:block;">Error: ${e.message}</small></div>`;
+      document.getElementById('items-container').innerHTML =
+        `<div class="no-items">Could not load data.json.<br/><small style="color:#374151;margin-top:4px;display:block;">Error: ${e.message}</small></div>`;
     }
   }
 
