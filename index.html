@@ -113,7 +113,9 @@
     .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
     .filter-btn { background: #1a1d27; border: 1px solid #2d3148; border-radius: 20px; padding: 6px 16px; font-size: 0.8rem; color: #94a3b8; cursor: pointer; transition: all 0.15s; }
     .filter-btn:hover, .filter-btn.active { background: #6366f1; border-color: #6366f1; color: #fff; }
-    .filter-btn.cat-active { background: #1e3a5f; border-color: #3b82f6; color: #93c5fd; }
+    .filter-btn.cat-active   { background: #1e3a5f; border-color: #3b82f6; color: #93c5fd; }
+    .filter-btn.owner-active { background: #1a3040; border-color: #0891b2; color: #67e8f9; }
+    .filter-btn.owner-active.me { background: #0a2535; border-color: #0284c7; color: #38bdf8; font-weight: 700; }
 
     /* ── Cards ── */
     .section { padding: 0 32px 32px; }
@@ -245,6 +247,10 @@
   <div class="filters" id="category-filters">
     <button class="filter-btn cat-active" onclick="setCategoryFilter('all', this)">All Categories</button>
   </div>
+  <div class="filter-group-label">Owner</div>
+  <div class="filters" id="owner-filters">
+    <button class="filter-btn owner-active" onclick="setOwnerFilter('all', this)">All Owners</button>
+  </div>
 </div>
 
 <div class="section">
@@ -270,6 +276,7 @@
   let allItems      = [];
   let statusFilter  = 'active';
   let categoryFilter = 'all';
+  let ownerFilter   = 'all';
   let githubPAT     = null;
   let archiveMode   = false;
 
@@ -368,8 +375,26 @@
     const cats = ['all', ...new Set(activeItems.map(i => i.category).filter(Boolean).sort())];
     document.getElementById('category-filters').innerHTML = cats.map(c => {
       const label  = c === 'all' ? 'All Categories' : c;
-      const active = c === 'all' ? 'cat-active' : '';
+      const active = (c === categoryFilter) ? 'cat-active' : '';
       return `<button class="filter-btn ${active}" onclick="setCategoryFilter('${c}', this)">${label}</button>`;
+    }).join('');
+  }
+
+  function setOwnerFilter(f, btn) {
+    ownerFilter = f;
+    document.querySelectorAll('#owner-filters .filter-btn').forEach(b => b.classList.remove('owner-active'));
+    btn.classList.add('owner-active');
+    renderItems();
+  }
+
+  function buildOwnerFilters(items) {
+    const owners = ['all', ...new Set(items.map(i => i.owner).filter(Boolean).sort())];
+    document.getElementById('owner-filters').innerHTML = owners.map(o => {
+      const label  = o === 'all' ? 'All Owners' : o;
+      const active = (o === ownerFilter) ? 'owner-active' : '';
+      // Highlight "Alan" as the primary user
+      const meClass = (o === 'Alan') ? 'me' : '';
+      return `<button class="filter-btn ${active} ${meClass}" onclick="setOwnerFilter('${o}', this)">${label}</button>`;
     }).join('');
   }
 
@@ -414,6 +439,11 @@
       if (categoryFilter !== 'all') {
         filtered = filtered.filter(i => i.category === categoryFilter);
       }
+    }
+
+    // Owner filter applies in both active and archive views
+    if (ownerFilter !== 'all') {
+      filtered = filtered.filter(i => i.owner === ownerFilter);
     }
 
     if (filtered.length === 0) {
@@ -552,6 +582,7 @@
 
       renderStats(allItems);
       buildCategoryFilters(allItems);
+      buildOwnerFilters(allItems);
       renderItems();
       renderDecisions(decisions);
     } catch (e) {
