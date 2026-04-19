@@ -1,20 +1,16 @@
 # Action Tracker
 > Last updated: 2026-04-14
-> Active items: 7 | Blocked: 0 | Done: 0
+> Active items: 7 | Blocked: 0 | Done: 4 (001, 002, 003, 007)
 
 ---
 
 ## Open
 
-| ID  | Description | Owner | Source | Priority | Status | Last Updated |
-|-----|-------------|-------|--------|----------|--------|--------------|
-| 001 | [Delivery terms — action from 2026-04-14 meeting] | Alan | 2026-04-14 | Medium | Open | 2026-04-14 |
-| 002 | [Freight revenue reporting — action from 2026-04-14 meeting] | Satbere | 2026-04-14 | Medium | Open | 2026-04-14 |
-| 003 | [Markup security — action from 2026-04-14 meeting] | Satbere | 2026-04-14 | Medium | Open | 2026-04-14 |
-| 004 | [Tracking numbers — action from 2026-04-14 meeting] | Alan | 2026-04-14 | Medium | Open | 2026-04-14 |
-| 005 | [Ticketing — action from 2026-04-14 meeting] | Alan | 2026-04-14 | Medium | Open | 2026-04-14 |
-| 006 | [Action item 6 — from 2026-04-14 meeting] | Alan | 2026-04-14 | Medium | Open | 2026-04-14 |
-| 007 | [Action item 7 — from 2026-04-14 meeting] | Alan | 2026-04-14 | Medium | Open | 2026-04-14 |
+| ID  | Title | Description | Category | Owner | Source | Priority | Status | Last Updated |
+|-----|-------|-------------|----------|-------|--------|----------|--------|--------------|
+| 004 | Review technical approach with developer | Satbere to walk through technical impact with the developer — tables affected, required privileges, and data flow from shipping integration to sales order and invoice — and report back with feasibility and effort estimate. | Development Review | Satbere | 2026-04-14 | High | Open | 2026-04-14 |
+| 005 | Confirm priority order of changes within ticket | Agree on the sequence of development work within the existing ticket — markup parameterization, security controls, and carrier charges fields — before handing off to the developer to start. | Ticketing & Support | Alan | 2026-04-14 | Medium | Open | 2026-04-14 |
+| 006 | Meet with divisional leaders on delivery terms cleanup | Alan to meet with divisional leaders to discuss which delivery terms to keep or remove, then finalize the cleanup list in Dynamics based on exported terms and actual usage data. | Delivery Terms | Alan | 2026-04-14 | Medium | Open | 2026-04-14 |
 
 ---
 
@@ -22,11 +18,11 @@
 
 | ID | Decision needed | Raised | Status |
 |----|-----------------|--------|--------|
-| D1 | [Decision 1 — from 2026-04-14 meeting] | 2026-04-14 | Open |
-| D2 | [Decision 2 — from 2026-04-14 meeting] | 2026-04-14 | Open |
-| D3 | [Decision 3 — from 2026-04-14 meeting] | 2026-04-14 | Open |
-| D4 | [Decision 4 — from 2026-04-14 meeting] | 2026-04-14 | Open |
-| D5 | [Decision 5 — from 2026-04-14 meeting] | 2026-04-14 | Open |
+| D1 | Where exactly will carrier charges and carrier name fields be stored, and how will they flow from the shipping integration through to the sales order and invoice? | 2026-04-14 | Open |
+| D2 | What is the granularity of the markup parameter — legal entity only for now, or future per-carrier/per-division overrides? | 2026-04-14 | Open |
+| D3 | Which roles and privileges will control editing of markup and total charges fields, and how will existing users be handled? | 2026-04-14 | Open |
+| D4 | What are the Power BI reporting requirements — field names, data sources, delta calculation logic — to confirm before development? | 2026-04-14 | Open |
+| D5 | Which delivery terms will be kept vs. removed, and what is the plan for historical data cleanup? | 2026-04-14 | Open |
 
 ---
 
@@ -42,14 +38,16 @@ _Nothing blocked._
 
 ---
 
-## Done / Archived
+## Done
 
-_See `_archive/` folder._
+| ID  | Title | Category | Owner | Completed |
+|-----|-------|----------|-------|-----------|
+| 001 | Export global delivery terms list from Dynamics | Delivery Terms | Satbere | 2026-04-14 |
+| 002 | Add carrier charges and carrier name fields to ticket | Freight Revenue | Satbere | 2026-04-14 |
+| 003 | Add markup parameter and security controls to ticket | Security & Access | Satbere | 2026-04-14 |
+| 007 | Schedule and hold cycle counts follow-up session | Cycle Counts | Alan | 2026-04-14 |
 
 ---
 
-> **Note:** Items 001–007 and decisions D1–D5 were extracted from the 2026-04-14 Dynamics meeting
-> (delivery terms, freight revenue reporting, markup security, tracking numbers, ticketing).
-> The original Plaud summary was not available during workspace setup — descriptions above are
-> placeholders. Update these with the actual item text, or drop the original Plaud file into
-> `_inbox/` and run `skill-process-plaud.md` to re-populate automatically.
+> Source: 2026-04-14 Dynamics meeting — Delivery Terms, Freight Revenue Reporting, Markup Security, Tracking Numbers, Ticketing
+> Participants: Alan, Satbere
