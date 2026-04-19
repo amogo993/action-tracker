@@ -21,7 +21,10 @@ This is my central action item and momentum tracker. Every meeting I attend gets
 - `CONTEXT.md` — this file (do not modify)
 
 ## My rules for action items
-1. Every action item must have: description, owner (Alan or Satbere or other), source meeting date, and status.
+1. Every action item must have: title, description, category, owner, source meeting date, and status.
+   - **title**: Short, punchy headline (5–10 words max). This is what shows up bold at the top of the card on the dashboard.
+   - **description**: 1–2 sentence plain-English summary of what needs to happen and why it matters.
+   - **category**: A short grouping label shared across related items (e.g. "Delivery Terms", "Freight Revenue", "Security & Access", "Tracking & Logistics", "Ticketing & Support"). Infer from context; use an existing category if one fits.
 2. Status options: Open, In Progress, Blocked, Done.
 3. Staleness threshold: flag any Open or In Progress item with no update in 6 business days.
 4. Priority: High / Medium / Low — default to Medium if not specified.

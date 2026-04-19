@@ -3,7 +3,9 @@
   "items": [
     {
       "id": "001",
-      "description": "[Delivery terms — update description from Plaud summary]",
+      "title": "[Delivery Terms — update from Plaud summary]",
+      "description": "[Brief description of what needs to happen — update from Plaud summary]",
+      "category": "Delivery Terms",
       "owner": "Alan",
       "source": "2026-04-14",
       "priority": "Medium",
@@ -12,7 +14,9 @@
     },
     {
       "id": "002",
-      "description": "[Freight revenue reporting — update description from Plaud summary]",
+      "title": "[Freight Revenue Reporting — update from Plaud summary]",
+      "description": "[Brief description of what needs to happen — update from Plaud summary]",
+      "category": "Freight Revenue",
       "owner": "Satbere",
       "source": "2026-04-14",
       "priority": "Medium",
@@ -21,7 +25,9 @@
     },
     {
       "id": "003",
-      "description": "[Markup security — update description from Plaud summary]",
+      "title": "[Markup Security — update from Plaud summary]",
+      "description": "[Brief description of what needs to happen — update from Plaud summary]",
+      "category": "Security & Access",
       "owner": "Satbere",
       "source": "2026-04-14",
       "priority": "Medium",
@@ -30,7 +36,9 @@
     },
     {
       "id": "004",
-      "description": "[Tracking numbers — update description from Plaud summary]",
+      "title": "[Tracking Numbers — update from Plaud summary]",
+      "description": "[Brief description of what needs to happen — update from Plaud summary]",
+      "category": "Tracking & Logistics",
       "owner": "Alan",
       "source": "2026-04-14",
       "priority": "Medium",
@@ -39,7 +47,9 @@
     },
     {
       "id": "005",
-      "description": "[Ticketing — update description from Plaud summary]",
+      "title": "[Ticketing — update from Plaud summary]",
+      "description": "[Brief description of what needs to happen — update from Plaud summary]",
+      "category": "Ticketing & Support",
       "owner": "Alan",
       "source": "2026-04-14",
       "priority": "Medium",
@@ -48,7 +58,9 @@
     },
     {
       "id": "006",
-      "description": "[Action item 6 — update description from Plaud summary]",
+      "title": "[Action item 6 — update from Plaud summary]",
+      "description": "[Brief description of what needs to happen — update from Plaud summary]",
+      "category": "General",
       "owner": "Alan",
       "source": "2026-04-14",
       "priority": "Medium",
@@ -57,7 +69,9 @@
     },
     {
       "id": "007",
-      "description": "[Action item 7 — update description from Plaud summary]",
+      "title": "[Action item 7 — update from Plaud summary]",
+      "description": "[Brief description of what needs to happen — update from Plaud summary]",
+      "category": "General",
       "owner": "Alan",
       "source": "2026-04-14",
       "priority": "Medium",

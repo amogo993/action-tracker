@@ -14,7 +14,9 @@ Then do the following:
    - Extract every action item. Look especially at sections labelled "Next Arrangements", "Action Items", "Follow-ups", or similar. Also extract any open questions, flagged risks, or unresolved decisions — these go into the tracker as Blocked or flagged items.
    - For each action item, assign:
      - **ID**: next sequential number from action-tracker.md (e.g. 008 if 007 is the last)
-     - **Description**: concise, plain language
+     - **Title**: short, punchy headline — 5 to 10 words max (e.g. "Confirm incoterms with freight supplier")
+     - **Description**: 1–2 sentence plain-English summary of what needs to happen and why it matters
+     - **Category**: a short grouping label shared by related items (e.g. "Delivery Terms", "Freight Revenue", "Security & Access"). Use an existing category if one fits; create a new one if nothing fits.
      - **Owner**: Alan, Satbere, or other (infer from context; default to Alan if unclear)
      - **Source**: meeting date from the file
      - **Priority**: High / Medium / Low (infer from context; default Medium)
