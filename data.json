@@ -1,54 +1,54 @@
 {
-  "lastUpdated": "2026-04-19",
+  "lastUpdated": "2026-04-14",
   "items": [
     {
       "id": "001",
-      "title": "[Delivery Terms Ã¢ÂÂ update from Plaud summary]",
-      "description": "[Brief description of what needs to happen Ã¢ÂÂ update from Plaud summary]",
+      "title": "Export global delivery terms list from Dynamics",
+      "description": "Export the complete global delivery terms list with descriptions from Dynamics and share for review. Needed to standardize terms, remove unused ones, and align with actual shipment usage across legal entities.",
       "category": "Delivery Terms",
-      "owner": "Alan",
+      "owner": "Satbere",
       "source": "2026-04-14",
       "priority": "Medium",
-      "status": "Open",
+      "status": "Done",
       "lastUpdated": "2026-04-14"
     },
     {
       "id": "002",
-      "title": "[Freight Revenue Reporting Ã¢ÂÂ update from Plaud summary]",
-      "description": "[Brief description of what needs to happen Ã¢ÂÂ update from Plaud summary]",
+      "title": "Add carrier charges and carrier name fields to ticket",
+      "description": "Document requirements in the existing ticket for new custom fields to store carrier charges and carrier name from the shipping integration, ensuring values flow through to invoices and reports.",
       "category": "Freight Revenue",
       "owner": "Satbere",
       "source": "2026-04-14",
-      "priority": "Medium",
-      "status": "Open",
+      "priority": "High",
+      "status": "Done",
       "lastUpdated": "2026-04-14"
     },
     {
       "id": "003",
-      "title": "[Markup Security Ã¢ÂÂ update from Plaud summary]",
-      "description": "[Brief description of what needs to happen Ã¢ÂÂ update from Plaud summary]",
+      "title": "Add markup parameter and security controls to ticket",
+      "description": "Add requirements to the existing ticket for a default markup percentage parameter (per legal entity) and manager-only edit rights for markup and total charges fields in both the shipping rate window and Maintain Charges.",
       "category": "Security & Access",
       "owner": "Satbere",
       "source": "2026-04-14",
-      "priority": "Medium",
-      "status": "Open",
+      "priority": "High",
+      "status": "Done",
       "lastUpdated": "2026-04-14"
     },
     {
       "id": "004",
-      "title": "[Tracking Numbers Ã¢ÂÂ update from Plaud summary]",
-      "description": "[Brief description of what needs to happen Ã¢ÂÂ update from Plaud summary]",
-      "category": "Tracking & Logistics",
-      "owner": "Alan",
+      "title": "Review technical approach with developer",
+      "description": "Satbere to walk through technical impact with the developer — tables affected, required privileges, and data flow from shipping integration to sales order and invoice — and report back with feasibility and effort estimate.",
+      "category": "Development Review",
+      "owner": "Satbere",
       "source": "2026-04-14",
-      "priority": "Medium",
+      "priority": "High",
       "status": "Open",
       "lastUpdated": "2026-04-14"
     },
     {
       "id": "005",
-      "title": "[Ticketing Ã¢ÂÂ update from Plaud summary]",
-      "description": "[Brief description of what needs to happen Ã¢ÂÂ update from Plaud summary]",
+      "title": "Confirm priority order of changes within ticket",
+      "description": "Agree on the sequence of development work within the existing ticket — markup parameterization, security controls, and carrier charges fields — before handing off to the developer to start.",
       "category": "Ticketing & Support",
       "owner": "Alan",
       "source": "2026-04-14",
@@ -58,9 +58,9 @@
     },
     {
       "id": "006",
-      "title": "[Action item 6 Ã¢ÂÂ update from Plaud summary]",
-      "description": "[Brief description of what needs to happen Ã¢ÂÂ update from Plaud summary]",
-      "category": "General",
+      "title": "Meet with divisional leaders on delivery terms cleanup",
+      "description": "Alan to meet with divisional leaders to discuss which delivery terms to keep or remove, then finalize the cleanup list in Dynamics based on exported terms and actual usage data.",
+      "category": "Delivery Terms",
       "owner": "Alan",
       "source": "2026-04-14",
       "priority": "Medium",
@@ -69,44 +69,44 @@
     },
     {
       "id": "007",
-      "title": "[Action item 7 Ã¢ÂÂ update from Plaud summary]",
-      "description": "[Brief description of what needs to happen Ã¢ÂÂ update from Plaud summary]",
-      "category": "General",
+      "title": "Schedule and hold cycle counts follow-up session",
+      "description": "Alan to send a calendar invite for a separate session focused on cycle counts. Agreed at the end of the April 14 meeting as a distinct follow-up.",
+      "category": "Cycle Counts",
       "owner": "Alan",
       "source": "2026-04-14",
-      "priority": "Medium",
-      "status": "Open",
-      "lastUpdated": "2026-04-19"
+      "priority": "Low",
+      "status": "Done",
+      "lastUpdated": "2026-04-14"
     }
   ],
   "decisions": [
     {
       "id": "D1",
-      "description": "[Unresolved decision 1 Ã¢ÂÂ update from Plaud summary]",
+      "description": "Where exactly will carrier charges and carrier name fields be stored, and how will they flow from the shipping integration through to the sales order and invoice for consistent reporting?",
       "raised": "2026-04-14",
       "status": "Open"
     },
     {
       "id": "D2",
-      "description": "[Unresolved decision 2 Ã¢ÂÂ update from Plaud summary]",
+      "description": "What is the granularity of the markup parameter — legal entity only for now, or should it support future per-carrier or per-division overrides to avoid rework later?",
       "raised": "2026-04-14",
       "status": "Open"
     },
     {
       "id": "D3",
-      "description": "[Unresolved decision 3 Ã¢ÂÂ update from Plaud summary]",
+      "description": "Which roles and privileges will control editing of markup and total charges fields in the shipping rate window and Maintain Charges, and how will existing users be handled?",
       "raised": "2026-04-14",
       "status": "Open"
     },
     {
       "id": "D4",
-      "description": "[Unresolved decision 4 Ã¢ÂÂ update from Plaud summary]",
+      "description": "What are the Power BI reporting requirements — field names, data sources, and delta calculation logic between carrier charges and customer charges — to be confirmed before development starts?",
       "raised": "2026-04-14",
       "status": "Open"
     },
     {
       "id": "D5",
-      "description": "[Unresolved decision 5 Ã¢ÂÂ update from Plaud summary]",
+      "description": "Which delivery terms will be kept vs. removed after the divisional leaders meeting, and what is the plan for historical data cleanup including impact on existing records?",
       "raised": "2026-04-14",
       "status": "Open"
     }
