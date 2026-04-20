@@ -37,7 +37,7 @@
     {
       "id": "004",
       "title": "Review technical approach with developer",
-      "description": "Satbere to walk through technical impact with the developer â tables affected, required privileges, and data flow from shipping integration to sales order and invoice â and report back with feasibility and effort estimate.",
+      "description": "Satbere to walk through technical impact with the developer Ã¢ÂÂ tables affected, required privileges, and data flow from shipping integration to sales order and invoice Ã¢ÂÂ and report back with feasibility and effort estimate.",
       "category": "Development Review",
       "owner": "Satbere",
       "source": "2026-04-14",
@@ -49,7 +49,7 @@
     {
       "id": "005",
       "title": "Confirm priority order of changes within ticket",
-      "description": "Agree on the sequence of development work within the existing ticket â markup parameterization, security controls, and carrier charges fields â before handing off to the developer to start.",
+      "description": "Agree on the sequence of development work within the existing ticket Ã¢ÂÂ markup parameterization, security controls, and carrier charges fields Ã¢ÂÂ before handing off to the developer to start.",
       "category": "Ticketing & Support",
       "owner": "Alan",
       "source": "2026-04-14",
@@ -65,8 +65,9 @@
       "owner": "Alan",
       "source": "2026-04-14",
       "priority": "Medium",
-      "status": "Open",
-      "lastUpdated": "2026-04-14"
+      "status": "Complete",
+      "lastUpdated": "2026-04-20",
+      "completedDate": "2026-04-20"
     },
     {
       "id": "007",
@@ -89,7 +90,7 @@
     },
     {
       "id": "D2",
-      "description": "What is the granularity of the markup parameter â legal entity only for now, or should it support future per-carrier or per-division overrides to avoid rework later?",
+      "description": "What is the granularity of the markup parameter Ã¢ÂÂ legal entity only for now, or should it support future per-carrier or per-division overrides to avoid rework later?",
       "raised": "2026-04-14",
       "status": "Open"
     },
@@ -101,7 +102,7 @@
     },
     {
       "id": "D4",
-      "description": "What are the Power BI reporting requirements â field names, data sources, and delta calculation logic between carrier charges and customer charges â to be confirmed before development starts?",
+      "description": "What are the Power BI reporting requirements Ã¢ÂÂ field names, data sources, and delta calculation logic between carrier charges and customer charges Ã¢ÂÂ to be confirmed before development starts?",
       "raised": "2026-04-14",
       "status": "Open"
     },
