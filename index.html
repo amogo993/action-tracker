@@ -60,7 +60,6 @@
     #connect-btn:hover { border-color: #6366f1; color: #a5b4fc; }
     #connect-btn.connected { background: #0f2a1a; border-color: #22c55e; color: #4ade80; }
 
-    /* ── Archive banner ── */
     #archive-banner {
       display: none;
       background: #0f2a1a;
@@ -78,7 +77,6 @@
     }
     #archive-banner button:hover { background: #4ade80; color: #000; }
 
-    /* ── PAT Modal ── */
     .modal-overlay {
       display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7);
       z-index: 100; align-items: center; justify-content: center;
@@ -94,7 +92,6 @@
     .btn-cancel { background: #2d3148; color: #94a3b8; }
     .btn-save   { background: #6366f1; color: #fff; font-weight: 600; }
 
-    /* ── Stats ── */
     .stats-bar { display: flex; gap: 12px; padding: 20px 32px; flex-wrap: wrap; }
     .stat { background: #1a1d27; border: 1px solid #2d3148; border-radius: 10px; padding: 14px 20px; min-width: 110px; text-align: center; }
     .stat .number { font-size: 1.8rem; font-weight: 700; line-height: 1; }
@@ -107,17 +104,13 @@
     .stat.complete .number   { color: #22c55e; }
     .stat.total .number      { color: #e2e8f0; }
 
-    /* ── Filters ── */
     .filter-group { padding: 0 32px 8px; }
     .filter-group-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.8px; color: #475569; margin-bottom: 6px; font-weight: 600; }
     .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
     .filter-btn { background: #1a1d27; border: 1px solid #2d3148; border-radius: 20px; padding: 6px 16px; font-size: 0.8rem; color: #94a3b8; cursor: pointer; transition: all 0.15s; }
     .filter-btn:hover, .filter-btn.active { background: #6366f1; border-color: #6366f1; color: #fff; }
-    .filter-btn.cat-active   { background: #1e3a5f; border-color: #3b82f6; color: #93c5fd; }
-    .filter-btn.owner-active { background: #1a3040; border-color: #0891b2; color: #67e8f9; }
-    .filter-btn.owner-active.me { background: #0a2535; border-color: #0284c7; color: #38bdf8; font-weight: 700; }
+    .filter-btn.cat-active { background: #1e3a5f; border-color: #3b82f6; color: #93c5fd; }
 
-    /* ── Cards ── */
     .section { padding: 0 32px 32px; }
     .section-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #64748b; margin-bottom: 12px; font-weight: 600; }
     .items-grid { display: flex; flex-direction: column; gap: 8px; }
@@ -134,7 +127,6 @@
     .item-card.blocked  { border-left: 3px solid #f97316; }
     .item-card.complete { border-left: 3px solid #22c55e; opacity: 0.7; }
 
-    /* Checkbox */
     .item-check {
       width: 28px; height: 28px; border-radius: 50%; border: 2px solid #374151;
       background: transparent; cursor: pointer; display: flex; align-items: center;
@@ -176,7 +168,6 @@
     .staleness-watch { color: #f59e0b; }
     .staleness-fresh { color: #64748b; }
 
-    /* Toast */
     .toast { position: fixed; bottom: 24px; right: 24px; background: #1a1d27; border: 1px solid #2d3148; border-radius: 10px; padding: 12px 20px; font-size: 0.82rem; color: #e2e8f0; z-index: 200; opacity: 0; transform: translateY(8px); transition: all 0.2s; pointer-events: none; }
     .toast.show    { opacity: 1; transform: translateY(0); }
     .toast.success { border-color: #22c55e; color: #4ade80; }
@@ -184,7 +175,6 @@
 
     .no-items { background: #1a1d27; border: 1px dashed #2d3148; border-radius: 10px; padding: 28px; text-align: center; color: #64748b; font-size: 0.85rem; }
 
-    /* Decisions */
     .decisions-grid { display: flex; flex-direction: column; gap: 8px; }
     .decision-card { background: #1a1d27; border: 1px solid #2d3148; border-left: 3px solid #a855f7; border-radius: 10px; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
     .decision-id   { font-size: 0.72rem; font-weight: 700; color: #a855f7; font-family: monospace; white-space: nowrap; }
@@ -207,18 +197,16 @@
   <h1>Action<span>Tracker</span></h1>
   <div class="header-right">
     <span id="last-updated">Loading...</span>
-    <button id="archive-btn" onclick="toggleArchive()">📦 Archive</button>
-    <button id="connect-btn" onclick="openPATModal()">🔑 Connect to save changes</button>
+    <button id="archive-btn" onclick="toggleArchive()">Archive</button>
+    <button id="connect-btn" onclick="openPATModal()">Connect to save changes</button>
   </div>
 </header>
 
-<!-- Archive banner -->
 <div id="archive-banner">
-  <span>📦 Viewing archived (completed) items</span>
-  <button onclick="toggleArchive()">← Back to active</button>
+  <span>Viewing archived (completed) items</span>
+  <button onclick="toggleArchive()">Back to active</button>
 </div>
 
-<!-- PAT Modal -->
 <div class="modal-overlay" id="pat-modal">
   <div class="modal">
     <h2>Connect to GitHub</h2>
@@ -238,7 +226,7 @@
   <div class="filter-group-label">Status</div>
   <div class="filters" id="status-filters">
     <button class="filter-btn active" onclick="setStatusFilter('active', this)">All Active</button>
-    <button class="filter-btn" onclick="setStatusFilter('stale', this)">🔴 Stale</button>
+    <button class="filter-btn" onclick="setStatusFilter('stale', this)">Stale</button>
     <button class="filter-btn" onclick="setStatusFilter('Open', this)">Open</button>
     <button class="filter-btn" onclick="setStatusFilter('In Progress', this)">In Progress</button>
     <button class="filter-btn" onclick="setStatusFilter('Blocked', this)">Blocked</button>
@@ -246,10 +234,6 @@
   <div class="filter-group-label">Category</div>
   <div class="filters" id="category-filters">
     <button class="filter-btn cat-active" onclick="setCategoryFilter('all', this)">All Categories</button>
-  </div>
-  <div class="filter-group-label">Owner</div>
-  <div class="filters" id="owner-filters">
-    <button class="filter-btn owner-active" onclick="setOwnerFilter('all', this)">All Owners</button>
   </div>
 </div>
 
@@ -276,28 +260,25 @@
   let allItems      = [];
   let statusFilter  = 'active';
   let categoryFilter = 'all';
-  let ownerFilter   = 'all';
   let githubPAT     = null;
   let archiveMode   = false;
 
-  // ── Archive toggle ────────────────────────────────────────
   function toggleArchive() {
     archiveMode = !archiveMode;
     const btn    = document.getElementById('archive-btn');
     const banner = document.getElementById('archive-banner');
     const filterGroup = document.getElementById('filter-group');
     const decisionsSection = document.getElementById('decisions-section');
-
     if (archiveMode) {
       btn.classList.add('active');
-      btn.textContent = '✓ Archive';
+      btn.textContent = 'Archive (on)';
       banner.classList.add('show');
       filterGroup.style.display = 'none';
       decisionsSection.style.display = 'none';
-      document.getElementById('items-section-title').textContent = 'Archived — Completed Items';
+      document.getElementById('items-section-title').textContent = 'Archived - Completed Items';
     } else {
       btn.classList.remove('active');
-      btn.textContent = '📦 Archive';
+      btn.textContent = 'Archive';
       banner.classList.remove('show');
       filterGroup.style.display = '';
       decisionsSection.style.display = '';
@@ -306,7 +287,6 @@
     renderItems();
   }
 
-  // ── PAT Modal ─────────────────────────────────────────────
   function openPATModal() {
     document.getElementById('pat-modal').classList.add('open');
     document.getElementById('pat-input').focus();
@@ -319,14 +299,13 @@
     document.getElementById('pat-input').value = '';
     closePATModal();
     const btn = document.getElementById('connect-btn');
-    btn.textContent = '🟢 Connected';
+    btn.textContent = 'Connected';
     btn.classList.add('connected');
-    showToast('Connected — checkboxes are now live', 'success');
+    showToast('Connected - checkboxes are now live', 'success');
   }
   document.getElementById('pat-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closePATModal(); });
   document.getElementById('pat-input').addEventListener('keydown', e => { if (e.key === 'Enter') savePAT(); });
 
-  // ── Toast ─────────────────────────────────────────────────
   let toastTimer;
   function showToast(msg, type = '') {
     const t = document.getElementById('toast');
@@ -335,7 +314,6 @@
     toastTimer = setTimeout(() => t.className = 'toast', 3000);
   }
 
-  // ── Staleness ─────────────────────────────────────────────
   function businessDaysSince(dateStr) {
     const start = new Date(dateStr), today = new Date();
     let count = 0, d = new Date(start);
@@ -355,7 +333,6 @@
     return { level: 'fresh', days };
   }
 
-  // ── Filters ───────────────────────────────────────────────
   function setStatusFilter(f, btn) {
     statusFilter = f;
     document.querySelectorAll('#status-filters .filter-btn').forEach(b => b.classList.remove('active'));
@@ -375,30 +352,11 @@
     const cats = ['all', ...new Set(activeItems.map(i => i.category).filter(Boolean).sort())];
     document.getElementById('category-filters').innerHTML = cats.map(c => {
       const label  = c === 'all' ? 'All Categories' : c;
-      const active = (c === categoryFilter) ? 'cat-active' : '';
-      return `<button class="filter-btn ${active}" onclick="setCategoryFilter('${c}', this)">${label}</button>`;
+      const active = c === 'all' ? 'cat-active' : '';
+      return '<button class="filter-btn ' + active + '" onclick="setCategoryFilter(' + JSON.stringify(c) + ', this)">' + label + '</button>';
     }).join('');
   }
 
-  function setOwnerFilter(f, btn) {
-    ownerFilter = f;
-    document.querySelectorAll('#owner-filters .filter-btn').forEach(b => b.classList.remove('owner-active'));
-    btn.classList.add('owner-active');
-    renderItems();
-  }
-
-  function buildOwnerFilters(items) {
-    const owners = ['all', ...new Set(items.map(i => i.owner).filter(Boolean).sort())];
-    document.getElementById('owner-filters').innerHTML = owners.map(o => {
-      const label  = o === 'all' ? 'All Owners' : o;
-      const active = (o === ownerFilter) ? 'owner-active' : '';
-      // Highlight "Alan" as the primary user
-      const meClass = (o === 'Alan') ? 'me' : '';
-      return `<button class="filter-btn ${active} ${meClass}" onclick="setOwnerFilter('${o}', this)">${label}</button>`;
-    }).join('');
-  }
-
-  // ── Stats ─────────────────────────────────────────────────
   function renderStats(items) {
     const staleCount = items.filter(i => i.status !== 'Complete' && businessDaysSince(i.lastUpdated) >= 6).length;
     const watchCount = items.filter(i => i.status !== 'Complete' && businessDaysSince(i.lastUpdated) >= 3 && businessDaysSince(i.lastUpdated) < 6).length;
@@ -406,188 +364,132 @@
     const inprog     = items.filter(i => i.status === 'In Progress').length;
     const blocked    = items.filter(i => i.status === 'Blocked').length;
     const complete   = items.filter(i => i.status === 'Complete').length;
-
-    document.getElementById('stats-bar').innerHTML = `
-      <div class="stat total">     <div class="number">${items.length}</div><div class="label">Total</div></div>
-      <div class="stat stale">     <div class="number">${staleCount}</div><div class="label">Stale</div></div>
-      <div class="stat watch">     <div class="number">${watchCount}</div><div class="label">Watch</div></div>
-      <div class="stat open">      <div class="number">${open}</div><div class="label">Open</div></div>
-      <div class="stat inprogress"><div class="number">${inprog}</div><div class="label">In Progress</div></div>
-      <div class="stat blocked">   <div class="number">${blocked}</div><div class="label">Blocked</div></div>
-      <div class="stat complete">  <div class="number">${complete}</div><div class="label">Complete</div></div>
-    `;
+    document.getElementById('stats-bar').innerHTML =
+      '<div class="stat total"><div class="number">' + items.length + '</div><div class="label">Total</div></div>' +
+      '<div class="stat stale"><div class="number">' + staleCount + '</div><div class="label">Stale</div></div>' +
+      '<div class="stat watch"><div class="number">' + watchCount + '</div><div class="label">Watch</div></div>' +
+      '<div class="stat open"><div class="number">' + open + '</div><div class="label">Open</div></div>' +
+      '<div class="stat inprogress"><div class="number">' + inprog + '</div><div class="label">In Progress</div></div>' +
+      '<div class="stat blocked"><div class="number">' + blocked + '</div><div class="label">Blocked</div></div>' +
+      '<div class="stat complete"><div class="number">' + complete + '</div><div class="label">Complete</div></div>';
   }
 
-  // ── Render items ──────────────────────────────────────────
   function renderItems() {
     const container = document.getElementById('items-container');
     let filtered;
-
     if (archiveMode) {
-      // Archive view: only completed items
       filtered = allItems.filter(i => i.status === 'Complete');
     } else {
-      // Active view: never show completed items
       filtered = allItems.filter(i => i.status !== 'Complete');
-
       if (statusFilter === 'stale') {
         filtered = filtered.filter(i => businessDaysSince(i.lastUpdated) >= 6);
       } else if (statusFilter !== 'active') {
         filtered = filtered.filter(i => i.status === statusFilter);
       }
-
       if (categoryFilter !== 'all') {
         filtered = filtered.filter(i => i.category === categoryFilter);
       }
     }
-
-    // Owner filter applies in both active and archive views
-    if (ownerFilter !== 'all') {
-      filtered = filtered.filter(i => i.owner === ownerFilter);
-    }
-
     if (filtered.length === 0) {
-      const msg = archiveMode
-        ? 'No completed items yet. Check items off using the circle button on each card.'
-        : 'No items match this filter.';
-      container.innerHTML = `<div class="no-items">${msg}</div>`;
+      const msg = archiveMode ? 'No completed items yet.' : 'No items match this filter.';
+      container.innerHTML = '<div class="no-items">' + msg + '</div>';
       return;
     }
-
     container.innerHTML = filtered.map(item => {
       const staleness    = getStaleness(item);
       const cardClass    = staleness.level;
       const isComplete   = item.status === 'Complete';
       const statusClass  = item.status.toLowerCase().replace(' ', '');
-      const priorityClass = `tag-priority-${item.priority.toLowerCase()}`;
-      const categoryTag  = item.category ? `<span class="meta-tag tag-category">${item.category}</span>` : '';
-
+      const priorityClass = 'tag-priority-' + item.priority.toLowerCase();
+      const categoryTag  = item.category ? '<span class="meta-tag tag-category">' + item.category + '</span>' : '';
       const stalenessHTML = isComplete
-        ? `<span class="staleness-label staleness-fresh">Archived</span>`
+        ? '<span class="staleness-label staleness-fresh">' + (item.completedDate ? 'Done ' + item.completedDate : 'Archived') + '</span>'
         : staleness.level === 'stale'
-          ? `<span class="staleness-label staleness-stale">⚨ ${staleness.days}d stale</span>`
+          ? '<span class="staleness-label staleness-stale">' + staleness.days + 'd stale</span>'
           : staleness.level === 'watch'
-            ? `<span class="staleness-label staleness-watch">👁 ${staleness.days}d</span>`
-            : `<span class="staleness-label staleness-fresh">${staleness.days}d ago</span>`;
-
-      return `
-        <div class="item-card ${cardClass}" id="card-${item.id}">
-          <button class="item-check ${isComplete ? 'checked' : ''}"
-                  onclick="toggleComplete('${item.id}')"
-                  title="${isComplete ? 'Reopen item' : 'Mark as Complete'}"></button>
-          <div class="item-id">${item.id}</div>
-          <div class="item-body">
-            ${item.title       ? `<div class="item-title">${item.title}</div>` : ''}
-            ${item.description ? `<div class="item-desc">${item.description}</div>` : ''}
-            <div class="item-meta">
-              ${categoryTag}
-              <span class="meta-tag tag-owner">${item.owner}</span>
-              <span class="meta-tag tag-source">${item.source}</span>
-              <span class="meta-tag ${priorityClass}">${item.priority}</span>
-            </div>
-          </div>
-          <div class="item-right">
-            <span class="status-badge status-${statusClass}">${item.status}</span>
-            ${stalenessHTML}
-          </div>
-        </div>
-      `;
+            ? '<span class="staleness-label staleness-watch">' + staleness.days + 'd</span>'
+            : '<span class="staleness-label staleness-fresh">' + staleness.days + 'd ago</span>';
+      return '<div class="item-card ' + cardClass + '" id="card-' + item.id + '">' +
+        '<button class="item-check ' + (isComplete ? 'checked' : '') + '" onclick="toggleComplete(' + JSON.stringify(item.id) + ')" title="' + (isComplete ? 'Reopen' : 'Complete') + '"></button>' +
+        '<div class="item-id">' + item.id + '</div>' +
+        '<div class="item-body">' +
+          (item.title ? '<div class="item-title">' + item.title + '</div>' : '') +
+          (item.description ? '<div class="item-desc">' + item.description + '</div>' : '') +
+          '<div class="item-meta">' + categoryTag +
+            '<span class="meta-tag tag-owner">' + item.owner + '</span>' +
+            '<span class="meta-tag tag-source">' + item.source + '</span>' +
+            '<span class="meta-tag ' + priorityClass + '">' + item.priority + '</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="item-right">' +
+          '<span class="status-badge status-' + statusClass + '">' + item.status + '</span>' +
+          stalenessHTML +
+        '</div>' +
+      '</div>';
     }).join('');
   }
 
-  // ── Toggle Complete via GitHub API ────────────────────────
   async function toggleComplete(itemId) {
-    if (!githubPAT) {
-      openPATModal();
-      showToast('Connect first to enable live updates', '');
-      return;
-    }
-
-    const btn = document.querySelector(`#card-${itemId} .item-check`);
+    if (!githubPAT) { openPATModal(); showToast('Connect first to enable live updates', ''); return; }
+    const btn = document.querySelector('#card-' + itemId + ' .item-check');
     if (btn) { btn.classList.add('loading'); btn.classList.remove('checked'); }
-
     try {
-      const getRes = await fetch(
-        `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/data.json`,
-        { headers: { Authorization: `token ${githubPAT}`, Accept: 'application/vnd.github.v3+json' } }
-      );
-      if (!getRes.ok) throw new Error('Could not fetch data.json from GitHub');
+      const getRes = await fetch('https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME + '/contents/data.json',
+        { headers: { Authorization: 'token ' + githubPAT, Accept: 'application/vnd.github.v3+json' } });
+      if (!getRes.ok) throw new Error('Could not fetch data.json');
       const fileData = await getRes.json();
       const current  = JSON.parse(atob(fileData.content.replace(/\n/g, '')));
-
       const item = current.items.find(i => i.id === itemId);
-      if (!item) throw new Error(`Item ${itemId} not found`);
+      if (!item) throw new Error('Item ' + itemId + ' not found');
       const today = new Date().toISOString().split('T')[0];
-      item.status      = item.status === 'Complete' ? 'Open' : 'Complete';
-      item.lastUpdated = today;
+      item.status        = item.status === 'Complete' ? 'Open' : 'Complete';
+      item.lastUpdated   = today;
+      item.completedDate = item.status === 'Complete' ? today : null;
       current.lastUpdated = today;
-
       const newContent = btoa(unescape(encodeURIComponent(JSON.stringify(current, null, 2))));
-      const putRes = await fetch(
-        `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/data.json`,
-        {
-          method: 'PUT',
-          headers: { Authorization: `token ${githubPAT}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: `Mark item ${itemId} as ${item.status}`, content: newContent, sha: fileData.sha })
-        }
-      );
+      const putRes = await fetch('https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME + '/contents/data.json',
+        { method: 'PUT', headers: { Authorization: 'token ' + githubPAT, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: 'Mark item ' + itemId + ' as ' + item.status, content: newContent, sha: fileData.sha }) });
       if (!putRes.ok) { const err = await putRes.json(); throw new Error(err.message || 'GitHub API error'); }
-
       const local = allItems.find(i => i.id === itemId);
-      if (local) { local.status = item.status; local.lastUpdated = today; }
+      if (local) { local.status = item.status; local.lastUpdated = today; local.completedDate = item.completedDate; }
       renderStats(allItems);
       buildCategoryFilters(allItems);
       renderItems();
-      const verb = item.status === 'Complete' ? 'marked complete ✓' : 'reopened';
-      showToast(`Item ${itemId} ${verb}`, 'success');
-
+      showToast('Item ' + itemId + ' ' + (item.status === 'Complete' ? 'marked complete' : 'reopened'), 'success');
     } catch (err) {
       if (btn) btn.classList.remove('loading');
       showToast('Error: ' + err.message, 'error');
     }
   }
 
-  // ── Decisions ─────────────────────────────────────────────
   function renderDecisions(decisions) {
     const container = document.getElementById('decisions-container');
     const open = decisions.filter(d => d.status === 'Open');
-    if (open.length === 0) {
-      container.innerHTML = `<div class="no-items">No unresolved decisions.</div>`;
-      return;
-    }
-    container.innerHTML = open.map(d => `
-      <div class="decision-card">
-        <span class="decision-id">${d.id}</span>
-        <span class="decision-desc">${d.description}</span>
-        <span class="decision-date">${d.raised}</span>
-      </div>
-    `).join('');
+    if (open.length === 0) { container.innerHTML = '<div class="no-items">No unresolved decisions.</div>'; return; }
+    container.innerHTML = open.map(d =>
+      '<div class="decision-card"><span class="decision-id">' + d.id + '</span><span class="decision-desc">' + d.description + '</span><span class="decision-date">' + d.raised + '</span></div>'
+    ).join('');
   }
 
-  // ── Load data ─────────────────────────────────────────────
   async function loadData() {
     try {
       const res  = await fetch('data.json?v=' + Date.now());
       const data = await res.json();
       allItems   = data.items || [];
       const decisions = data.decisions || [];
-
-      document.getElementById('last-updated').textContent = `Last updated: ${data.lastUpdated || 'unknown'}`;
-
-      // Update archive button count
+      document.getElementById('last-updated').textContent = 'Last updated: ' + (data.lastUpdated || 'unknown');
       const completeCount = allItems.filter(i => i.status === 'Complete').length;
       if (!archiveMode) {
-        document.getElementById('archive-btn').textContent = `📦 Archive (${completeCount})`;
+        document.getElementById('archive-btn').textContent = 'Archive (' + completeCount + ')';
       }
-
       renderStats(allItems);
       buildCategoryFilters(allItems);
-      buildOwnerFilters(allItems);
       renderItems();
       renderDecisions(decisions);
     } catch (e) {
       document.getElementById('items-container').innerHTML =
-        `<div class="no-items">Could not load data.json.<br/><small style="color:#374151;margin-top:4px;display:block;">Error: ${e.message}</small></div>`;
+        '<div class="no-items">Could not load data.json.<br/><small style="color:#374151;margin-top:4px;display:block;">Error: ' + e.message + '</small></div>';
     }
   }
 
@@ -595,4 +497,4 @@
   setInterval(loadData, 5 * 60 * 1000);
 </script>
 </body>
-</html>
+  </html>
