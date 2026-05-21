@@ -244,11 +244,72 @@ letter-spacing: 0.4px;
 
 footer { text-align: center; padding: 24px; font-size: 0.72rem; color: #374151; border-top: 1px solid #1e2030; }
 
+/* ── Mobile card menu button ── */
+.card-menu-btn {
+  display: none;
+  background: transparent;
+  border: 1px solid #2d3148;
+  border-radius: 6px;
+  color: #64748b;
+  font-size: 1.1rem;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+  line-height: 1;
+  margin-top: 1px;
+}
+.card-menu-btn:hover { border-color: #6366f1; color: #a5b4fc; }
+
+/* ── Card popover (mobile actions) ── */
+#card-popover {
+  display: none;
+  position: fixed;
+  z-index: 150;
+  background: #1a1d27;
+  border: 1px solid #2d3148;
+  border-radius: 12px;
+  padding: 14px;
+  min-width: 200px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.6);
+}
+#card-popover.show { display: block; }
+.popover-status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #2d3148;
+  gap: 8px;
+}
+.popover-btn {
+  width: 100%;
+  background: #1e2040;
+  border: 1px solid #2d3148;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.82rem;
+  color: #e2e8f0;
+  cursor: pointer;
+  text-align: left;
+  margin-top: 6px;
+  transition: all 0.15s;
+  display: block;
+}
+.popover-btn:hover { border-color: #6366f1; background: #252840; }
+.popover-btn.complete-btn:hover { border-color: #22c55e; background: #0f2a1a; color: #4ade80; }
+.popover-btn.na-btn:hover { border-color: #3b82f6; background: #0f1a35; color: #60a5fa; }
+
 @media (max-width: 600px) {
 header, .stats-bar, .filter-group, .section { padding-left: 16px; padding-right: 16px; }
 #archive-banner, #na-banner { padding-left: 16px; padding-right: 16px; }
-.item-card { grid-template-columns: 28px 40px 1fr; }
+.item-card { grid-template-columns: 28px 40px 1fr 28px; }
 .item-right { display: none; }
+.card-menu-btn { display: flex; }
 }
 </style>
 </head>
@@ -290,6 +351,17 @@ header, .stats-bar, .filter-group, .section { padding-left: 16px; padding-right:
 </div>
 
 <div class="toast" id="toast"></div>
+
+<!-- Mobile card actions popover -->
+<div id="card-popover">
+  <div class="popover-status-row">
+    <span id="popover-status-badge"></span>
+    <span id="popover-staleness"></span>
+  </div>
+  <button class="popover-btn complete-btn" id="popover-complete-btn"></button>
+  <button class="popover-btn na-btn" id="popover-na-btn"></button>
+</div>
+
 <div class="stats-bar" id="stats-bar"></div>
 
 <div class="filter-group" id="filter-group">
@@ -584,6 +656,7 @@ function renderItems() {
       onclick="toggleNA_item('${item.id}')"
       title="${isNA ? 'Restore to active view' : 'Mark as Not Applicable — removes from active view'}">N/A</button>
   </div>
+  <button class="card-menu-btn" onclick="openCardMenu('${item.id}', this)" aria-label="Card actions">⋯</button>
 </div>`;
   }).join('');
 }
@@ -613,90 +686,61 @@ async function pushRemoteData(sha, data, message) {
   if (!res.ok) { const err = await res.json(); throw new Error(err.message || 'GitHub API error'); }
 }
 
-// ── Toggle Complete ─────────────────────
-async function toggleComplete(itemId) {
-  if (!githubPAT) { openPATModal(); showToast('Connect first to enable live updates', ''); return; }
-  const checkBtn = document.querySelector(`#card-${itemId} .item-check`);
-  if (checkBtn) { checkBtn.classList.add('loading'); checkBtn.classList.remove('checked'); }
-  try {
-    const { fileData, current } = await fetchRemoteData();
-    const item = current.items.find(i => i.id === itemId);
-    if (!item) throw new Error(`Item ${itemId} not found`);
-    const today = new Date().toISOString().split('T')[0];
-    item.status = item.status === 'Complete' ? 'Open' : 'Complete';
-    item.lastUpdated = today;
-    item.completedDate = item.status === 'Complete' ? today : null;
-    current.lastUpdated = today;
-    await pushRemoteData(fileData.sha, current, `Mark item ${itemId} as ${item.status}`);
-    const local = allItems.find(i => i.id === itemId);
-    if (local) Object.assign(local, { status: item.status, lastUpdated: today, completedDate: item.completedDate });
-    renderStats(allItems); buildCategoryFilters(allItems); renderItems(); refreshBtnLabels();
-    showToast(`Item ${itemId} ${item.status === 'Complete' ? 'marked complete ✓' : 'reopened'}`, 'success');
-  } catch (err) {
-    if (checkBtn) checkBtn.classList.remove('loading');
-    showToast('Error: ' + err.message, 'error');
+// ── Mobile card popover ───────────────────────────────────
+let _popoverItemId = null;
+
+function openCardMenu(itemId, btn) {
+  const item = allItems.find(i => i.id === itemId);
+  if (!item) return;
+  _popoverItemId = itemId;
+
+  const isComplete = item.status === 'Complete';
+  const isNA       = item.status === 'Not Applicable';
+  const staleness  = getStaleness(item);
+  const statusKey  = item.status.toLowerCase().replace(/\s+/g, '').replace(/\//g, '');
+
+  // Status badge
+  const badge = document.getElementById('popover-status-badge');
+  badge.className = `status-badge status-${statusKey}`;
+  badge.textContent = item.status;
+
+  // Staleness label
+  const staleEl = document.getElementById('popover-staleness');
+  if (isComplete || isNA) {
+    staleEl.className = 'staleness-label staleness-fresh';
+    staleEl.textContent = isComplete ? (item.completedDate ? 'Done ' + item.completedDate : 'Archived') : 'N/A';
+  } else if (staleness.level === 'stale') {
+    staleEl.className = 'staleness-label staleness-stale';
+    staleEl.textContent = staleness.days + 'd stale';
+  } else if (staleness.level === 'watch') {
+    staleEl.className = 'staleness-label staleness-watch';
+    staleEl.textContent = staleness.days + 'd';
+  } else {
+    staleEl.className = 'staleness-label staleness-fresh';
+    staleEl.textContent = staleness.days + 'd ago';
   }
+
+  // Complete button
+  const completeBtn = document.getElementById('popover-complete-btn');
+  completeBtn.textContent = isComplete ? '↩ Reopen item' : '✓ Mark as Complete';
+  completeBtn.onclick = () => { closeCardMenu(); toggleComplete(itemId); };
+
+  // N/A button
+  const naBtn = document.getElementById('popover-na-btn');
+  naBtn.textContent = isNA ? '↩ Restore to active' : 'N/A — Mark as Not Applicable';
+  naBtn.onclick = () => { closeCardMenu(); toggleNA_item(itemId); };
+
+  // Position: fixed, right-aligned under the ⋯ button
+  const popover = document.getElementById('card-popover');
+  popover.classList.add('show');
+  const rect = btn.getBoundingClientRect();
+  const rightGap = window.innerWidth - rect.right;
+  popover.style.right = Math.max(rightGap, 8) + 'px';
+  popover.style.left = 'auto';
+  const topPos = rect.bottom + 6;
+  popover.style.top = (topPos + popover.offsetHeight > window.innerHeight
+    ? rect.top - popover.offsetHeight - 6
+    : topPos) + 'px';
 }
 
-// ── Toggle N/A per item ───────────────────────────────────
-async function toggleNA_item(itemId) {
-  if (!githubPAT) { openPATModal(); showToast('Connect first to enable live updates', ''); return; }
-  const naBtn = document.querySelector(`#card-${itemId} .item-na-btn`);
-  if (naBtn) naBtn.textContent = '...';
-  try {
-    const { fileData, current } = await fetchRemoteData();
-    const item = current.items.find(i => i.id === itemId);
-    if (!item) throw new Error(`Item ${itemId} not found`);
-    const today = new Date().toISOString().split('T')[0];
-    const wasNA = item.status === 'Not Applicable';
-    item.status = wasNA ? 'Open' : 'Not Applicable';
-    item.lastUpdated = today;
-    current.lastUpdated = today;
-    await pushRemoteData(fileData.sha, current, `Mark item ${itemId} as ${item.status}`);
-    const local = allItems.find(i => i.id === itemId);
-    if (local) Object.assign(local, { status: item.status, lastUpdated: today });
-    renderStats(allItems); buildCategoryFilters(allItems); renderItems(); refreshBtnLabels();
-    showToast(wasNA ? `Item ${itemId} restored to active` : `Item ${itemId} marked N/A — hidden from active view`, 'info');
-  } catch (err) {
-    if (naBtn) naBtn.textContent = 'N/A';
-    showToast('Error: ' + err.message, 'error');
-  }
-}
-
-// ── Decisions ─────────────────────────────────────────────
-function renderDecisions(decisions) {
-  const container = document.getElementById('decisions-container');
-  const open = (decisions || []).filter(d => d.status === 'Open');
-  if (open.length === 0) { container.innerHTML = `<div class="no-items">No unresolved decisions.</div>`; return; }
-  container.innerHTML = open.map(d => `
-<div class="decision-card">
-  <span class="decision-id">${d.id}</span>
-  <span class="decision-desc">${d.description}</span>
-  <span class="decision-date">${d.raised}</span>
-</div>`).join('');
-}
-
-// ── Load data ─────────────────────────────────────────────
-async function loadData() {
-  try {
-    const res  = await fetch('data.json?v=' + Date.now());
-    const data = await res.json();
-    allItems = data.items || [];
-    const decisions = data.decisions || [];
-    document.getElementById('last-updated').textContent = `Last updated: ${data.lastUpdated || 'unknown'}`;
-    refreshBtnLabels();
-    renderStats(allItems);
-    buildCategoryFilters(allItems);
-    renderItems();
-    renderDecisions(decisions);
-  } catch (e) {
-    document.getElementById('items-container').innerHTML =
-      `<div class="no-items">Could not load data.json.<br/><small style="color:#374151;margin-top:4px;display:block;">Error: ${e.message}</small></div>`;
-  }
-}
-
-loadData();
-setInterval(loadData, 5 * 60 * 1000);
-</script>
-</body>
-</html>
+function closeCardMenu
