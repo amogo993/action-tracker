@@ -402,7 +402,7 @@ const REPO_NAME = 'action-tracker';
 let allItems = [];
 let statusFilter = 'active';
 let categoryFilter = 'all';
-let githubPAT = null;
+let githubPAT = localStorage.getItem('action-tracker-pat') || null;
 let archiveMode = false;
 let naMode = false;
 
@@ -501,12 +501,13 @@ function savePAT() {
   const val = document.getElementById('pat-input').value.trim();
   if (!val) return;
   githubPAT = val;
+  localStorage.setItem('action-tracker-pat', val); // remember across sessions
   document.getElementById('pat-input').value = '';
   closePATModal();
   const btn = document.getElementById('connect-btn');
-  btn.textContent = 'Connected';
+  btn.textContent = '✓ Connected';
   btn.classList.add('connected');
-  showToast('Connected — checkboxes are now live', 'success');
+  showToast('Connected — changes will sync across all devices', 'success');
 }
 document.getElementById('pat-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closePATModal(); });
 document.getElementById('pat-input').addEventListener('keydown', e => { if (e.key === 'Enter') savePAT(); });
@@ -767,40 +768,73 @@ document.addEventListener('click', e => {
   }
 });
 
-// -- Toggle Complete (local-first: no GitHub token required)
+// -- Toggle Complete (GitHub API if token available, localStorage fallback)
 async function toggleComplete(itemId) {
   const checkBtn = document.querySelector(`#card-${itemId} .item-check`);
   if (checkBtn) { checkBtn.classList.add('loading'); checkBtn.classList.remove('checked'); }
   try {
-    const item = allItems.find(i => i.id === itemId);
-    if (!item) throw new Error(`Item ${itemId} not found`);
     const today = new Date().toISOString().split('T')[0];
-    item.status = item.status === 'Complete' ? 'Open' : 'Complete';
-    item.lastUpdated = today;
-    item.completedDate = item.status === 'Complete' ? today : null;
-    saveOverride(itemId, { status: item.status, lastUpdated: today, completedDate: item.completedDate });
+    if (githubPAT) {
+      // Sync via GitHub so all devices stay in sync
+      const { fileData, current } = await fetchRemoteData();
+      const item = current.items.find(i => i.id === itemId);
+      if (!item) throw new Error(`Item ${itemId} not found`);
+      item.status = item.status === 'Complete' ? 'Open' : 'Complete';
+      item.lastUpdated = today;
+      item.completedDate = item.status === 'Complete' ? today : null;
+      current.lastUpdated = today;
+      await pushRemoteData(fileData.sha, current, `Mark item ${itemId} as ${item.status}`);
+      const local = allItems.find(i => i.id === itemId);
+      if (local) Object.assign(local, { status: item.status, lastUpdated: today, completedDate: item.completedDate });
+      // Also clear any local override so GitHub is the truth
+      const overrides = getOverrides(); delete overrides[itemId]; localStorage.setItem(LS_KEY, JSON.stringify(overrides));
+      showToast(`Item ${itemId} ${item.status === 'Complete' ? 'marked complete ✓ (synced)' : 'reopened (synced)'}`, 'success');
+    } else {
+      // No token — save locally only, prompt user to connect for cross-device sync
+      const item = allItems.find(i => i.id === itemId);
+      if (!item) throw new Error(`Item ${itemId} not found`);
+      item.status = item.status === 'Complete' ? 'Open' : 'Complete';
+      item.lastUpdated = today;
+      item.completedDate = item.status === 'Complete' ? today : null;
+      saveOverride(itemId, { status: item.status, lastUpdated: today, completedDate: item.completedDate });
+      showToast(`Item ${itemId} ${item.status === 'Complete' ? 'marked complete ✓ (this device only)' : 'reopened'} — connect to sync across devices`, 'info');
+    }
     renderStats(allItems); buildCategoryFilters(allItems); renderItems(); refreshBtnLabels();
-    showToast(`Item ${itemId} ${item.status === 'Complete' ? 'marked complete ✓' : 'reopened'}`, 'success');
   } catch (err) {
     if (checkBtn) checkBtn.classList.remove('loading');
     showToast('Error: ' + err.message, 'error');
   }
 }
 
-// -- Toggle N/A per item (local-first: no GitHub token required)
+// -- Toggle N/A (GitHub API if token available, localStorage fallback)
 async function toggleNA_item(itemId) {
   const naBtn = document.querySelector(`#card-${itemId} .item-na-btn`);
   if (naBtn) naBtn.textContent = '...';
   try {
-    const item = allItems.find(i => i.id === itemId);
-    if (!item) throw new Error(`Item ${itemId} not found`);
     const today = new Date().toISOString().split('T')[0];
-    const wasNA = item.status === 'Not Applicable';
-    item.status = wasNA ? 'Open' : 'Not Applicable';
-    item.lastUpdated = today;
-    saveOverride(itemId, { status: item.status, lastUpdated: today });
+    if (githubPAT) {
+      const { fileData, current } = await fetchRemoteData();
+      const item = current.items.find(i => i.id === itemId);
+      if (!item) throw new Error(`Item ${itemId} not found`);
+      const wasNA = item.status === 'Not Applicable';
+      item.status = wasNA ? 'Open' : 'Not Applicable';
+      item.lastUpdated = today;
+      current.lastUpdated = today;
+      await pushRemoteData(fileData.sha, current, `Mark item ${itemId} as ${item.status}`);
+      const local = allItems.find(i => i.id === itemId);
+      if (local) Object.assign(local, { status: item.status, lastUpdated: today });
+      const overrides = getOverrides(); delete overrides[itemId]; localStorage.setItem(LS_KEY, JSON.stringify(overrides));
+      showToast(wasNA ? `Item ${itemId} restored (synced)` : `Item ${itemId} marked N/A (synced)`, 'info');
+    } else {
+      const item = allItems.find(i => i.id === itemId);
+      if (!item) throw new Error(`Item ${itemId} not found`);
+      const wasNA = item.status === 'Not Applicable';
+      item.status = wasNA ? 'Open' : 'Not Applicable';
+      item.lastUpdated = today;
+      saveOverride(itemId, { status: item.status, lastUpdated: today });
+      showToast(wasNA ? `Item ${itemId} restored (this device only)` : `Item ${itemId} marked N/A (this device only)`, 'info');
+    }
     renderStats(allItems); buildCategoryFilters(allItems); renderItems(); refreshBtnLabels();
-    showToast(wasNA ? `Item ${itemId} restored to active` : `Item ${itemId} marked N/A`, 'info');
   } catch (err) {
     if (naBtn) naBtn.textContent = 'N/A';
     showToast('Error: ' + err.message, 'error');
@@ -844,6 +878,12 @@ async function loadData() {
 
 loadData();
 setInterval(loadData, 5 * 60 * 1000);
+
+// Auto-restore connected state if token was saved
+if (githubPAT) {
+  const btn = document.getElementById('connect-btn');
+  if (btn) { btn.textContent = '✓ Connected'; btn.classList.add('connected'); }
+}
 </script>
 </body>
 </html>
