@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-18",
+  "lastUpdated": "2026-05-29",
   "items": [
     {
       "id": "001",
@@ -132,8 +132,9 @@
       "owner": "TBD",
       "source": "05-18 Weekly Meeting: Freight Capture Fixes, Process Mapping, and Inventory Controls",
       "priority": "Medium",
-      "status": "Open",
-      "lastUpdated": "2026-05-18"
+      "status": "Complete",
+      "lastUpdated": "2026-05-29",
+      "completedDate": "2026-05-29"
     },
     {
       "id": "013",
